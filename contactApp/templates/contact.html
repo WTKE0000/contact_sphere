@@ -1,0 +1,49 @@
+{% load static %}
+{%load tailwind_tags %}
+{% load widget_tweaks %}
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       {%tailwind_css%}
+    <link rel="stylesheet" href="{% static 'contactApp/style.css' %}">
+  
+    <title>Contact Form</title>
+</head>
+<body>
+    {% if error_server%}
+        <div class="error border-2 border-red-500">{{error_server}}</div>
+    {% endif%}
+    <h1>Contact Form</h1>
+    <form id="contactForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    <label id='name' class="text-red-400">{{form.name.label}}</label>
+    {%render_field form.name class="input-field"%}
+    {% for error in form.name.errors%}
+        <div class="text-red-500">{{ error}}</div>
+    {% endfor %}
+    <label id='email'>{{form.email.label}}</label>
+    {%render_field form.email class="input-field"%}
+    {% for error in form.email.errors%}
+        <div class="text-red-500">{{error}}</div>
+    {% endfor %}
+    <label id='phone_number'>{{form.phone_number.label}}</label>
+    {%render_field form.phone_number class="input-field border-8 border-blue-500"%}
+    {% for error in form.phone_number.errors%}
+        <div class="text-red-500">{{ error}}</div>
+    {% endfor %}
+    <label id='face_id'>{{form.face_id.label}}</label>
+    {%render_field form.face_id class="input-field "%}
+    {% for error in form.face_id.errors%}
+        <div class="text-red-500">{{ error}}</div>
+    {% endfor %}
+    <button type="submit">Save Contact</button>
+    </form>
+
+
+    {% comment %} <script src="{% static 'contactApp/script.js' %}"></script> {% endcomment %}
+</body>
+</html>
