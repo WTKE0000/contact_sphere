@@ -147,3 +147,5 @@ NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 
 MEDIA_URL= "/recovery/"
 MEDIA_ROOT = BASE_DIR / 'uploads'
+
+LOGIN_REDIRECT_URL = "contact"
